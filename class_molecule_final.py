@@ -6,6 +6,7 @@ class Molecule(object):
     def __init__(self, vzorec):
         self.vzorec = vzorec
         
+        # slovnik počet výskytů určitého atomu v sumárním vzorci
         self.slovnik = {}
         
         # právě jedno velký písmeno + 0 nebo 1 malý písmeno + 0-mnoho čísel ve dvou skupinách (1)(2)
