@@ -1,0 +1,98 @@
+<html>
+
+<head>
+
+{% load staticfiles %}
+    
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="{% static "moldb/styles.css" %}" >
+	
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ChemInfo project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Description" lang="en" content="ADD SITE DESCRIPTION">
+    <meta name="author" content="ADD AUTHOR INFORMATION">
+    <meta name="robots" content="index, follow">
+
+    <!-- icons -->
+    <link rel="apple-touch-icon" href="{% static "apple-touch-icon.png" %}">
+    <link rel="shortcut icon" href="{% static "favicon.ico" %}">
+
+    <!-- Override CSS file - add your own CSS rules -->
+    <link rel="stylesheet" href="{% static "styles.css" %}">
+
+</head>
+
+<body>
+<h1>Cheminfo projekt</h1>
+<h2>Databáze <b>biologicky aktivních</b> a potenciálně <b>toxických</b> prvků</h2>
+<h3><em>Eda Ehler</em></h3>
+<p></p>
+<p><small>Popis aplikace a toho co děl&aacute;, přesměrováno z template_DIR -> ./moldb/templates...</small></p>
+<p><u>Popis:</u><br>
+Databáze primárně slouží k ukládání vybraných molekul. Obsahuje základní informace 
+(jméno, SMILES, InCHI, InCHIKey, mol. hmotnost, sumární vzorec, 2D model molekuly),
+do budoucna se počítá s přidáváním informací o toxicitě, případně o biologické aktivitě látky.
+Vkládání látek je možno primárně z sdf souboru, případně ručně přes html formulář (omezená funkčnost).
+</p>
+
+<!-- Odkazy z první strany -->
+<p>
+<small>
+    Testovací odkazy:&nbsp;
+    <a title="search" href="search">Search the database</a>,&nbsp;
+    <a href="moldb_insert">Insert into the database</a>,&nbsp;
+    <a href="all_search">vyhledávání</a>,&nbsp;
+    <a href="scitani/4/5">zkouska pretty url funkce scitani</a>,&nbsp;
+    <a href="chemdoodle/">ChemDoodle</a>,&nbsp;
+    <a href="jsme/">jsme</a>.
+</small>
+</p>
+
+<div>
+    <table>
+    <!--table style="height: 19px;" width="463"-->
+        <th>
+            Select you option:
+        </th>
+    <tbody>
+        <tr>
+        <td style="text-align: center;">
+        <form method="get" action="/moldb_insert">
+                    <button type="submit">INSERT into the database</button>
+                </form> </td>
+                
+        <td style="text-align: center;">
+        <form method="get" action="/search">
+                    <button type="submit">SEARCH & VIEW the database</button>
+                </form> </td>
+
+        <td style="text-align: center;">
+        <form method="get" action="/upload_sdf">
+                    <button type="submit">UPLOAD *.sdf file into the database</button>
+                </form> </td>        
+
+        <td style="text-align: center;">
+        <form method="get" action="/cas">
+                    <button type="submit">EXPORT/IMPORT data</button>
+                </form> </td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+
+<hr>
+
+<div>
+    <p>
+    <small>
+        &copy; 2016, Edvard Ehler
+    </small>
+    </p>
+</div>
+    
+</body>
+</html>

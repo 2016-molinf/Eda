@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head>
+    <title>Search{% if query %} Results{% endif %}</title>
+</head>
+<body>
+    <h1>Search</h1>
+    <p>Seach the depository in "name", "SMILES" and "summary formula" fields.</p>
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <form action="." method="GET">
+                        <label for="q">Search: </label>
+                        <input type="text" name="q" value="{{ query|escape }}">
+                        <input type="submit" value="Search">
+                    </form>
+                </td>
+                <td></td>
+                <td>
+                    <form action="." method="GET">
+                        <input type="hidden" name="q" value="all">
+                        <input type="submit" value="View all">
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    {% if query %}
+        <h2>Results for "{{ query|escape }}":</h2>
+        
+        {% if results %}
+            <table cellspacing=5, title="Database search results:">
+            <thead>
+                <tr align=left><th width=10%>id</th><th width=20%>name</th><th width=20%>SMILES</th><th>summary formula</th><th>timestamp</th><th>picture</th></tr>
+            </thead>    
+            <tbody>
+            {% for mol in results %}
+                <tr><td>BLA-{{ mol.id }}</td>
+                      <td>{{ mol.name }}</td>
+                      <td>{{ mol.smiles }}</td>
+                      <td>{{ mol.summary_formula }}</td>
+                      <td>{{ mol.timestamp }}</td>
+                      <td>{{ mol.pic }}</td></tr>
+            {% endfor %}
+            
+            </tbody>
+            </table>
+        {% else %}
+            <p>No molecules found</p>
+        {% endif %}
+    {% endif %}
+
+<p></p>
+<a href="..">Back to the mainpage</a>    
+</body>
+</html>

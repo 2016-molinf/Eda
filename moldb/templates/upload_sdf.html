@@ -1,0 +1,19 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head>
+    <title>SDF upload</title>
+</head>
+
+<body>
+    <h1>SDF upload</h1>
+    <p>Please, select the sdf file to be uploaded into the database:</p>
+    <form action=".", method="POST", enctype="multipart/form-data">{% csrf_token %}
+        <table>
+        {{ form.as_table }}
+        </table>
+        <p><input type="submit" value="Upload *.sdf file"></p>
+    </form>
+<p></p>
+<a href="..">Back to the mainpage</a>
+</body>
+</html>

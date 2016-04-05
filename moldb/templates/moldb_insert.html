@@ -1,0 +1,19 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head>
+    <title>Moldb insert</title>
+</head>
+
+<body>
+    <h1>Insert new molecule</h1>
+    <p>Please, provide the following details for new molecule to be inserted into Moldb <small>(* fields requiered)</small>:</p>
+    <form action="." method="POST">{% csrf_token %}
+        <table>
+        {{ form.as_table }}
+        </table>
+        <p><input type="submit" value="Insert into Moldb"></p>
+    </form>
+<p></p>
+<a href="..">Back to the mainpage</a>
+</body>
+</html>

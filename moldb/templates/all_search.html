@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head>
+    <title>Search{% if query %} Results{% endif %}</title>
+</head>
+<body>
+    <h1>Search for the molecule</h1>
+    <p>Please, provide the following details to search for the molecule:</p>
+    <form action="." method="POST">{% csrf_token %}
+        <table>
+        {{ form.as_table }}
+        </table>
+        <p><input type="submit" value="Search the database"></p>
+    </form>
+    
+      
+    
+    {% if query %}
+        <h2>Results for "{{ query|escape }}":</h2>
+        
+        {% if results %}
+            <table cellspacing=5, title="Database search results:">
+            <thead>
+                <tr align=left><th width=10%>id</th><th width=20%>name</th><th width=20%>SMILES</th><th>summary formula</th><th>timestamp</th><th>picture</th></tr>
+            </thead>    
+            <tbody>
+            {% for mol in results %}
+                <tr><td>BLA-{{ mol.id }}</td>
+                      <td>{{ mol.name }}</td>
+                      <td>{{ mol.smiles }}</td>
+                      <td>{{ mol.summary_formula }}</td>
+                      <td>{{ mol.timestamp }}</td>
+                      <td>{{ mol.pic }}</td></tr>
+            {% endfor %}
+            
+            </tbody>
+            </table>
+        {% else %}
+            <p>No molecules found</p>
+        {% endif %}
+    {% endif %}
+
+<p></p>
+<a href="..">Back to the mainpage</a>    
+</body>
+</html>
