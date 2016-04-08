@@ -33,20 +33,41 @@
         {% if results %}
             <table cellspacing=5, title="Database search results:">
             <thead>
-                <tr align=left><th width=10%>id</th><th width=20%>name</th><th width=20%>SMILES</th><th>summary formula</th><th>timestamp</th><th>picture</th></tr>
+                <tr align=left>
+                    <th>select</th>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>picture</th>
+                    <th>summary formula</th>
+                    <th>mol. weight</th>
+                    <th>timestamp</th>
+                    <th>SMILES</th></tr>
             </thead>    
             <tbody>
             {% for mol in results %}
-                <tr><td>BLA-{{ mol.id }}</td>
+                <tr>
+                      <td>
+                            <input form="save_search_results" type="checkbox" name="selected_mols" value="{{ mol.id }}" /></td>
+                      <td>X-{{ mol.id }}</td>
                       <td>{{ mol.name }}</td>
-                      <td>{{ mol.smiles }}</td>
+                      <td><img src="structures/{{mol.id}}" height="100" width="100"></td>
                       <td>{{ mol.summary_formula }}</td>
+                      <td>{{ mol.mol_weight }}
                       <td>{{ mol.timestamp }}</td>
-                      <td>{{ mol.pic }}</td></tr>
+                      <td style="font-size: 50%">{{ mol.smiles }}</td>
+                      <!--td>{{ mol.pic }}</td-->
+                </tr>
             {% endfor %}
-            
+               
             </tbody>
             </table>
+            
+            <form id="save_search_results" action="export_search_results" method="POST">{% csrf_token %}
+            <input type="submit" value="Save selected as SDF">
+            <input type="button" value="Save all search results as SDF">
+            </form>
+
+            
         {% else %}
             <p>No molecules found</p>
         {% endif %}

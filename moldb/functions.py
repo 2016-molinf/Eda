@@ -8,7 +8,8 @@ from rdkit.Chem import AllChem
 
 from rdkit.Chem import Draw
 #-----------
-from .models import Molecule
+#from django.shortcuts import get_object_or_404
+from django.http import HttpResponse
 
 
 # FUNKCE
@@ -25,14 +26,26 @@ def handle_uploaded_sdf(soubor, titul):
     return kam
         
 # vytvoření obrázku
+def get_structure_image(smiles_string):
+    try:
+        mol = Chem.MolFromSmiles(smiles_string)
+        image = Draw.MolToImage(mol)
+        response = HttpResponse(content_type="image/png")
+        image.save(response,"PNG")
+        return image
+    except:
+        return None
+"""
 def structure_image(request, id):
-    mol_obj = get_object_or_404(Structure, id=id)
-    mol = Chem.MolFromSmiles(str(mol_obj.mol))
+    mol_obj = get_object_or_404(Molecule, id=id)
+    #mol = Chem.MolFromSmiles(str(mol_obj.mol))
+    mol = Chem.MolFromSmiles(str(mol_obj.smiles))
     image = Draw.MolToImage(mol)
     response = HttpResponse(content_type="image/png")
     image.save(response,"PNG")
     return response
-
+"""
+    
 # zpracování nahraných multi sdf souborů    
 def sdf_parser(soubor):
     mol_counter = 0

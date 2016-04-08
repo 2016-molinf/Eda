@@ -1,9 +1,8 @@
 # views (=logika) pro chemoinfo django projekt
 
 # importy
-from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render_to_response, render
+from django.shortcuts import render_to_response, render, get_object_or_404
 
 from django.db.models import Q      # slovník v ve funci search...?
 
@@ -15,6 +14,8 @@ from .functions import handle_uploaded_sdf, sdf_parser
 
 #----- importy standardních knihoven používaných ve funkcích
 import datetime
+from rdkit import Chem
+from rdkit.Chem import Draw
 
 # funkce
 # ------
@@ -70,6 +71,20 @@ def search(request):
         results = []
     return render_to_response("search.html", {"results": results, "query": query})
 
+
+def structure_image(request, id):
+    mol_obj = get_object_or_404(Molecule, id=id)
+    mol = Chem.MolFromSmiles(mol_obj.smiles)
+    image = Draw.MolToImage(mol)
+    response = HttpResponse(content_type="image/png")
+    image.save(response,"PNG")
+    return response    
+
+
+def export_search_results(request):
+    if request.method == 'POST':
+        print(request)
+    
 #-----------------
 def all_search(request):
     if request.method == 'POST':

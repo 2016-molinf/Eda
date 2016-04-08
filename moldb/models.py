@@ -1,4 +1,5 @@
 from django.db import models
+from .functions import get_structure_image
 
 # Create your models here.
 
@@ -17,7 +18,9 @@ class Molecule(models.Model):
     deleted = models.BooleanField(default=False)     # dle doporučení z nějaké knížky, lepší nemazat, jen přepnout switch na True
                         # to co bych smazal už nedostanu - není "undo"
     
-    
+    def get_pic(self):
+        pic = get_structure_image(self.smiles)
+        return pic
     
     def insert_single(self, name="", smiles="", pic=""):
         pass

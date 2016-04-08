@@ -14,4 +14,6 @@ urlpatterns = [
     url(r'^all_search/$', views.all_search),
     url(r'^upload_sdf/$', views.upload_sdf),
     url(r'^successful_upload/$', views.successful_upload),
+    url(r'structures/(\d+)', views.structure_image),
+    url(r'^search/export_search_results$', views.export_search_results),
 ]

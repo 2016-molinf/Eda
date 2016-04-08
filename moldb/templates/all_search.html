@@ -25,12 +25,17 @@
             </thead>    
             <tbody>
             {% for mol in results %}
-                <tr><td>BLA-{{ mol.id }}</td>
+                <tr>
+                      <td><form>
+                            <label for="select"></label>
+                            <input id="check" type="checkbox" value="vyber" /></form></td>
+                      <td>BLA-{{ mol.id }}</td>
                       <td>{{ mol.name }}</td>
                       <td>{{ mol.smiles }}</td>
                       <td>{{ mol.summary_formula }}</td>
                       <td>{{ mol.timestamp }}</td>
-                      <td>{{ mol.pic }}</td></tr>
+                      <td>{{ mol.pic }}</td>
+                </tr>
             {% endfor %}
             
             </tbody>
