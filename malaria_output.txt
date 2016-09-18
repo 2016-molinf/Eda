@@ -1,0 +1,4 @@
+Regressor           	mean_abs_err	mean_sqr_err	avg_r2	explained_var
+LinearRegression    	4.34589476833e+16	3.41350279615e+35	0.167	0.168
+BayesianRidge       	502669.167	5.6183185244e+12	-0.006	0.0
+SGDRegressor        	728622.212	2.10030617358e+12	0.436	0.438
